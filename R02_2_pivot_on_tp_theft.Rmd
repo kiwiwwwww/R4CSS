@@ -33,6 +33,9 @@ options(stringsAsFactors = F)
 
 url <- "https://data.taipei/api/getDatasetInfo/downloadResource?id=68785231-d6c5-47a1-b001-77eec70bec02&rid=93d9bc2d-af08-4db7-a56b-9f0a49226fa3"
 df <- read.csv(url, fileEncoding = "big5")
+
+
+
 ```
 
 
@@ -68,6 +71,12 @@ str(df)
 library(readr)
 df <- read_csv(url, locale = locale(encoding = "Big5"))
 
+df <- read.csv(url,
+               fileEncoding = "big5", 
+               stringsAsFactors = FALSE)
+# double-check the structure of it
+str(df)
+
 ```
 
 
@@ -78,6 +87,8 @@ df <- read_csv(url, locale = locale(encoding = "Big5"))
 library(httr)
 GET(url, write_disk("data/tptheft.csv", overwrite = TRUE))
 df <- read.csv("data/tptheft.csv", fileEncoding = "big5", stringsAsFactors = FALSE)
+
+
 ```
 
 
@@ -161,6 +172,9 @@ table(df$time)
 
 # counting the frequency of region variable
 table(df$region)
+
+
+
 ```
 
 
@@ -186,6 +200,8 @@ df <- df[!df$time %in% c("00~03", "06~09", "09~12", "12~15", "15~18", "19~21", "
 
 # filter out irrelevant region(area)
 df <- df[!df$region %in% c("三重", "中和", "淡水", "板橋"), ]
+
+#「!」不要c("三重", "中和", "淡水", "板橋")的
 ```
 
 
